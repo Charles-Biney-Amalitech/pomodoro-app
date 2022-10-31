@@ -24,33 +24,33 @@
     <div class="wrapper">
       <div class="logo flex-center"><img src="./assets/logo.svg" alt="Pomodoro logo" /></div>
       <nav class="flex-center mode-picker">
-        <ul>
-          <li class="flex-center active"><a>pomodoro</a></li>
-          <li class="flex-center"><a>short break</a></li>
-          <li class="flex-center"><a>long break</a></li>
+        <ul id="mode_selector">
+          <li id="mode_pomodoro" class="flex-center active">pomodoro</li>
+          <li id="mode_short_break" class="flex-center">short break</li>
+          <li id="mode_long_break" class="flex-center">long break</li>
         </ul>
       </nav>
       <div class="timer-wrapper flex-center">
         <div class="timer-holder">
           <svg class="svg-timer" viewBox="0 0 339 339" fill="none">
-            <circle class="timer-ring" r="45%" cx="50%" cy="50%" stroke-width="10"></circle>
+            <circle id="timer_ring" class="timer-ring" r="45%" cx="50%" cy="50%" stroke-width="10"></circle>
             <text y="55%" x="50%" id="timer">00:00</text>
             <text id="timer_btn" y="70%" x="54%">START</text>
           </svg>
         </div>
       </div>
       <div class="flex-center settings-btn">
-        <button><img src="./assets/icon-settings.svg" alt="Settings" /></button>
+        <button id="open_modal"><img src="./assets/icon-settings.svg" alt="Settings" /></button>
       </div>
 
-      <div class="settings-wrapper flex-center">
+      <div id="modal" class="settings-wrapper flex-center">
         <div class="settings-holder">
           <div class="settings">
             <div class="row title">
               <h2>Settings</h2>
-              <div class="close"><img src="./assets/icon-close.svg" alt="close" /></div>
+              <div id="close_modal" class="close"><img src="./assets/icon-close.svg" alt="close" /></div>
             </div>
-            <form class="time-selector">
+            <form id="timer_form" class="time-selector">
               <h3 class="mt-20">Time (minutes)</h3>
               <div class="row time">
                 <div class="col">
@@ -69,26 +69,26 @@
               <div class="row bordered font">
                 <h3>font</h3>
                 <div class="flex-between">
-                  <input type="radio" id="sans" name="font" value="sans" checked />
+                  <input type="radio" id="sans" name="font" value="Kumbh Sans" checked />
                   <label class="flex-center" for="sans">Aa</label>
 
-                  <input type="radio" id="serif" name="font" value="serif" />
+                  <input type="radio" id="serif" name="font" value="Roboto Slab" />
                   <label class="flex-center" for="serif">Aa</label>
 
-                  <input type="radio" id="mono" name="font" value="mono" />
+                  <input type="radio" id="mono" name="font" value="Space Mono" />
                   <label class="flex-center" for="mono">Aa</label>
                 </div>
               </div>
               <div class="row color">
                 <h3>color</h3>
                 <div class="flex-between">
-                  <input type="radio" id="color_one" name="color" value="color_one" checked />
+                  <input type="radio" id="color_one" name="color" value="f87070" checked />
                   <label class="flex-center" for="color_one"></label>
 
-                  <input type="radio" id="color_two" name="color" value="color_two" />
+                  <input type="radio" id="color_two" name="color" value="70f3f8" />
                   <label class="flex-center" for="color_two"></label>
 
-                  <input type="radio" id="color_three" name="color" value="color_three" />
+                  <input type="radio" id="color_three" name="color" value="d881f8" />
                   <label class="flex-center" for="color_three"></label>
                 </div>
               </div>
@@ -101,5 +101,6 @@
     <!-- ====== Delete after ======
       pause restart Time (minutes) pomodoro short break long break Font Color Apply
     -->
+    <script src="./index.js"></script>
   </body>
 </html>
