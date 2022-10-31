@@ -6,6 +6,7 @@ font-family: 'Space Mono', monospace;
 
 :root {
   --primary-color: #1e213f;
+  --accent-color: #f87070;
   --accent-1: #f87070;
   --accent-2: #70f3f8;
   --accent-3: #d881f8;
@@ -17,13 +18,15 @@ font-family: 'Space Mono', monospace;
   --timer-shadow: -50px -50px 100px #272c5a, 50px 50px 100px #121530;
   background-color: var(--primary-color);
   color: var(--gray-dark);
+
+  --font: "Kumbh Sans";
+  font-family: var(--font);
 }
 
 body {
   margin: 0;
   width: 100vw;
   height: 100vh;
-  font-family: "Kumbh Sans";
   flex-flow: column;
 }
 
@@ -55,7 +58,7 @@ button {
   outline: none;
   border: none;
   cursor: pointer;
-  font-family: "Kumbh Sans", sans-serif;
+  font-family: var(--font);
 }
 
 label {
@@ -68,7 +71,7 @@ label {
 input {
   border: none;
   outline: none;
-  font-family: "Kumbh Sans", sans-serif;
+  font-family: var(--font);
   color: var(--primary-color);
 }
 
@@ -177,7 +180,7 @@ input[type="radio"] {
 
 .primary-btn {
   padding: 16px 0;
-  background: var(--accent-1);
+  background: var(--accent-color);
   color: var(--white);
   font-size: 16px;
   line-height: 20px;
@@ -213,7 +216,7 @@ input[type="radio"] {
 }
 
 .mode-picker ul li.active {
-  background-color: var(--accent-1);
+  background-color: var(--accent-color);
   border-radius: 31px;
   color: var(--dark-blue);
 }
@@ -243,8 +246,8 @@ input[type="radio"] {
 .timer-ring {
   transform: rotate(-90deg);
   transform-origin: center;
-  stroke: var(--accent-1);
-  animation: fill 1s;
+  stroke: var(--accent-color);
+  animation: fill 1s ease-in-out;
   animation-iteration-count: 1;
   stroke-dashoffset: 0;
   stroke-dasharray: 1000;
@@ -266,6 +269,11 @@ text {
   line-height: 20px;
   text-align: center;
   letter-spacing: 15px;
+  cursor: pointer;
+}
+
+#timer_btn:hover {
+  fill: var(--accent-color);
 }
 
 .settings-btn > button > img {
@@ -276,6 +284,10 @@ text {
 .settings-btn > button > img:hover {
   transform: rotate(90deg);
   transition: all.6s;
+}
+
+#modal {
+  display: none;
 }
 
 .settings-wrapper {
@@ -299,6 +311,15 @@ text {
   background: var(--white);
   border-radius: 25px;
   color: var(--dark-blue);
+}
+
+.settings .close {
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.settings .close:hover {
+  opacity: 1;
 }
 
 .settings .title {
