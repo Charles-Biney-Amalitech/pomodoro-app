@@ -240,17 +240,14 @@ input[type="radio"] {
 .svg-timer {
   text-anchor: middle;
   stroke-linecap: round;
-  transform-origin: center;
 }
 
 .timer-ring {
   transform: rotate(-90deg);
   transform-origin: center;
   stroke: var(--accent-color);
-  animation: fill 1s ease-in-out;
-  animation-iteration-count: 1;
-  stroke-dashoffset: 0;
   stroke-dasharray: 1000;
+  transition: 1s;
 }
 
 text {

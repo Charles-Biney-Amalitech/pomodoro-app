@@ -33,9 +33,9 @@
       <div class="timer-wrapper flex-center">
         <div class="timer-holder">
           <svg class="svg-timer" viewBox="0 0 339 339" fill="none">
-            <circle id="timer_ring" class="timer-ring" r="45%" cx="50%" cy="50%" stroke-width="10"></circle>
-            <text y="55%" x="50%" id="timer">00:00</text>
-            <text id="timer_btn" y="70%" x="54%">START</text>
+            <circle id="timer_ring" stroke-dashoffset="0" class="timer-ring" r="155" cx="50%" cy="50%" stroke-width="10"></circle>
+            <text y="57%" x="50%" id="timer" data-current-timer="0">01:00</text>
+            <text id="timer_btn" y="75%" x="54%">START</text>
           </svg>
         </div>
       </div>
@@ -55,15 +55,15 @@
               <div class="row time">
                 <div class="col">
                   <label for="pomodoro">pomodoro</label>
-                  <input type="number" id="pomodoro" name="pomodoro" value="25" />
+                  <input type="number" id="pomodoro" name="pomodoro" min="1" value="25" />
                 </div>
                 <div class="col">
                   <label for="short_break">short break</label>
-                  <input type="number" id="short_break" name="short_break" value="5" />
+                  <input type="number" id="short_break" name="short_break" min="1" value="5" />
                 </div>
                 <div class="col">
                   <label for="long_break">long break</label>
-                  <input type="number" id="long_break" name="long_break" value="15" />
+                  <input type="number" id="long_break" name="long_break" min="1" value="15" />
                 </div>
               </div>
               <div class="row bordered font">
@@ -98,9 +98,7 @@
         </div>
       </div>
     </div>
-    <!-- ====== Delete after ======
-      pause restart Time (minutes) pomodoro short break long break Font Color Apply
-    -->
+    <!-- ====== Site scripts ====== -->
     <script src="./index.js"></script>
   </body>
 </html>
