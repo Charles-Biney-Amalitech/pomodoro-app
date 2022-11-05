@@ -1,24 +1,33 @@
 // Modal variables
-const openModalBtn = document.getElementById('open_modal')
-const closeModalBtn = document.getElementById('close_modal')
 let modal = document.getElementById('modal')
+
+// Modal functions
+document.getElementById('open_modal').addEventListener('click', () => {
+    modal.style.display = 'flex';
+})
+
+function closeModal() {
+    modal.style.display = 'none';
+}
+
+document.getElementById('close_modal').addEventListener('click', closeModal)
+
+const increment = (id) => {
+    let field = document.getElementById(id)
+    field.value = parseInt(field.value) + 1
+}
+const decrement = (id) => {
+    let field = document.getElementById(id)
+    field.value = parseInt(field.value) - 1
+}
 
 // Timer variables
 const timerBtn = document.getElementById('timer_btn')
 const timerForm = document.getElementById('timer_form')
 let timerRing = document.getElementById('timer_ring')
 let timer = document.getElementById('timer')
+let isPaused = false;
 
-// Modal functions
-function closeModal() {
-    modal.style.display = 'none';
-}
-
-closeModalBtn.addEventListener('click', closeModal)
-
-openModalBtn.addEventListener('click', () => {
-    modal.style.display = 'flex';
-})
 // Set property functions
 const setAccentColor = (color) => {
     document.documentElement.style.setProperty('--accent-color', `#${color}`);
@@ -28,11 +37,14 @@ const setFont = (font) => {
     document.documentElement.style.setProperty('--font', `"${font}"`);
 }
 
-
 // Set Mode
 const setMode = (event) => {
+    let children = event.target.parentNode.children
+    children = [...children]
+    children.forEach(child => child.classList.remove('active'))
+    event.target.classList.add('active')
     timerObject.mode = event.target.id.slice(5);
-    setTimer(timerObject.time*60)
+    setTimer(timerObject.time * 60)
 }
 
 let modes = document.getElementById('mode_selector').children
@@ -47,7 +59,9 @@ const setTimer = (time) => {
     seconds < 10 ? seconds = `0${seconds}` : seconds;
     minutes < 10 ? minutes = `0${minutes}` : minutes;
 
-    return timer.innerHTML = `${minutes}:${seconds}`
+    timer.setAttribute('data-current-timer', time)
+    return timer.innerHTML = `${minutes}:${seconds}`;
+
 }
 
 // Timer functions
@@ -63,6 +77,7 @@ const timerObject = {
     get mode() { return this._mode },
     get time() { return this._time[`${this._mode}`] },
 }
+timer.setAttribute('data-current-timer', (timerObject.time * 60))
 
 timerForm.onsubmit = (e) => {
     e.preventDefault();
@@ -78,23 +93,47 @@ timerForm.onsubmit = (e) => {
 
     setAccentColor(color)
     setFont(font)
-    setTimer(timerObject.time*60)
+    setTimer(timerObject.time * 60)
 
     // Close Settings Modal when done
     closeModal()
 }
 
-const startTimer = () => {
-    let time = timerObject.time * 60;
+const startTimer = (event) => {
+    let payload = event.target;
+    let time = timer.getAttribute('data-current-timer')
+    let ringDashOffSet = timerRing.getAttribute('stroke-dashoffset')
+    ringDashOffSet < 1 ? ringDashOffSet = 1004 : ringDashOffSet
+    let x = ringDashOffSet / time;
+
+    switch (payload.innerHTML.toLowerCase()) {
+        case 'pause':
+            isPaused = true
+            payload.innerHTML = 'RESUME'
+            break;
+        case 'resume':
+            isPaused = false
+            payload.innerHTML = 'PAUSE'
+        case 'start':
+            payload.innerHTML = 'PAUSE'
+            break;
+        default:
+            isPaused = false
+            payload.innerHTML = 'PAUSE'
+    }
+
     let countDown = setInterval(() => {
         if (time <= 0) {
             clearInterval(countDown)
+            payload.innerHTML = 'RESTART'
+            timer.setAttribute('data-current-timer', (timerObject.time * 60))
+        } else if (!isPaused) {
+            time--;
+            ringDashOffSet -= x
+            timerRing.setAttribute('stroke-dashoffset', ringDashOffSet)
+            setTimer(time)
         }
-        setTimer(time)
-        time--;
     }, 1000)
 }
 
 timerBtn.onclick = startTimer;
-
-timerRing.style.animationDuration = '12s';

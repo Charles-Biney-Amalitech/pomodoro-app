@@ -16,13 +16,16 @@
     <script src="https://kit.fontawesome.com/89537b102f.js" crossorigin="anonymous"></script>
 
     <!-- Stylesheet(s) -->
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./responsive.css" />
 
     <title>Frontend Mentor | Pomodoro app</title>
   </head>
   <body class="flex-center">
     <div class="wrapper">
-      <div class="logo flex-center"><img src="./assets/logo.svg" alt="Pomodoro logo" /></div>
+      <div class="logo flex-center">
+        <img src="./assets/logo.svg" alt="Pomodoro logo" />
+      </div>
       <nav class="flex-center mode-picker">
         <ul id="mode_selector">
           <li id="mode_pomodoro" class="flex-center active">pomodoro</li>
@@ -30,15 +33,25 @@
           <li id="mode_long_break" class="flex-center">long break</li>
         </ul>
       </nav>
-      <div class="timer-wrapper flex-center">
-        <div class="timer-holder">
-          <svg class="svg-timer" viewBox="0 0 339 339" fill="none">
-            <circle id="timer_ring" class="timer-ring" r="45%" cx="50%" cy="50%" stroke-width="10"></circle>
-            <text y="55%" x="50%" id="timer">00:00</text>
-            <text id="timer_btn" y="70%" x="54%">START</text>
-          </svg>
+      <main>
+        <div class="timer-wrapper flex-center">
+          <div class="timer-holder">
+            <svg class="svg-timer" viewBox="0 0 339 339" fill="none">
+              <circle
+                id="timer_ring"
+                stroke-dashoffset="0"
+                class="timer-ring"
+                r="155"
+                cx="50%"
+                cy="50%"
+                stroke-width="10"
+              ></circle>
+              <text y="57%" x="50%" id="timer" data-current-timer="0">25:00</text>
+              <text id="timer_btn" y="75%" x="54%">START</text>
+            </svg>
+          </div>
         </div>
-      </div>
+      </main>
       <div class="flex-center settings-btn">
         <button id="open_modal"><img src="./assets/icon-settings.svg" alt="Settings" /></button>
       </div>
@@ -55,15 +68,33 @@
               <div class="row time">
                 <div class="col">
                   <label for="pomodoro">pomodoro</label>
-                  <input type="number" id="pomodoro" name="pomodoro" value="25" />
+                  <div class="custom-input">
+                    <input type="number" id="pomodoro" name="pomodoro" min="1" value="25" />
+                    <div class="arrows">
+                      <span class="up" onclick="increment('pomodoro')"><i class="fa fa-angle-up"></i></span>
+                      <span class="down" onclick="decrement('pomodoro')"><i class="fa fa-angle-down"></i></span>
+                    </div>
+                  </div>
                 </div>
                 <div class="col">
                   <label for="short_break">short break</label>
-                  <input type="number" id="short_break" name="short_break" value="5" />
+                  <div class="custom-input">
+                    <input type="number" id="short_break" name="short_break" min="1" value="5" />
+                    <div class="arrows">
+                      <span class="up" onclick="increment('short_break')"><i class="fa fa-angle-up"></i></span>
+                      <span class="down" onclick="decrement('short_break')"><i class="fa fa-angle-down"></i></span>
+                    </div>
+                  </div>
                 </div>
                 <div class="col">
                   <label for="long_break">long break</label>
-                  <input type="number" id="long_break" name="long_break" value="15" />
+                  <div class="custom-input">
+                    <input type="number" id="long_break" name="long_break" min="1" value="15" />
+                    <div class="arrows">
+                      <span class="up" onclick="increment('long_break')"><i class="fa fa-angle-up"></i></span>
+                      <span class="down" onclick="decrement('long_break')"><i class="fa fa-angle-down"></i></span>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="row bordered font">
@@ -98,9 +129,7 @@
         </div>
       </div>
     </div>
-    <!-- ====== Delete after ======
-      pause restart Time (minutes) pomodoro short break long break Font Color Apply
-    -->
+    <!-- ====== Site scripts ====== -->
     <script src="./index.js"></script>
   </body>
 </html>
