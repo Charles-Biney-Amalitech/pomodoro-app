@@ -12,6 +12,15 @@ function closeModal() {
 
 document.getElementById('close_modal').addEventListener('click', closeModal)
 
+const increment = (id) => {
+    let field = document.getElementById(id)
+    field.value = parseInt(field.value) + 1
+}
+const decrement = (id) => {
+    let field = document.getElementById(id)
+    field.value = parseInt(field.value) - 1
+}
+
 // Timer variables
 const timerBtn = document.getElementById('timer_btn')
 const timerForm = document.getElementById('timer_form')
@@ -30,6 +39,10 @@ const setFont = (font) => {
 
 // Set Mode
 const setMode = (event) => {
+    let children = event.target.parentNode.children
+    children = [...children]
+    children.forEach(child => child.classList.remove('active'))
+    event.target.classList.add('active')
     timerObject.mode = event.target.id.slice(5);
     setTimer(timerObject.time * 60)
 }
@@ -54,7 +67,7 @@ const setTimer = (time) => {
 // Timer functions
 const timerObject = {
     _time: {
-        pomodoro: 1,
+        pomodoro: 25,
         short_break: 5,
         long_break: 15,
     },

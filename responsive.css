@@ -1,0 +1,73 @@
+@media only screen and (max-width: 570px) {
+  h2 {
+    font-size: 20px;
+    line-height: 35px;
+  }
+
+  input[type="number"] {
+    padding: 12px 16px;
+  }
+
+  .mode-picker ul li {
+    font-size: 12px;
+  }
+
+  .timer-wrapper {
+    width: 300px;
+    height: 300px;
+  }
+
+  #timer {
+    font-size: 80px;
+    letter-spacing: 0;
+
+    color: #d7e0ff;
+  }
+
+  .settings-holder {
+    width: 327px;
+    height: 575px;
+  }
+
+  .settings {
+    height: 549px;
+    border-radius: 15px;
+  }
+
+  .settings .title {
+    padding: 10px 20px;
+  }
+
+  .settings .time-selector h3 {
+    font-size: 11px;
+    text-align: center;
+  }
+
+  .settings .time-selector .row {
+    flex-flow: column;
+  }
+
+  .settings .time-selector .row > h3 {
+    margin-bottom: 15px;
+  }
+
+  .settings .time-selector .row.time .col {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .arrows {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    display: flex;
+    flex-flow: column;
+    color: var(--primary-color);
+  }
+
+  .arrows span {
+    height: 15px;
+  }
+}
