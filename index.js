@@ -12,11 +12,11 @@ function closeModal() {
 
 document.getElementById('close_modal').addEventListener('click', closeModal)
 
-const increment = (id) => {
+const increment = (id) => { // Increase function for settings number input
     let field = document.getElementById(id)
     field.value = parseInt(field.value) + 1
 }
-const decrement = (id) => {
+const decrement = (id) => { // Increase function for settings number input
     let field = document.getElementById(id)
     field.value = parseInt(field.value) - 1
 }
@@ -27,6 +27,11 @@ const timerForm = document.getElementById('timer_form')
 let timerRing = document.getElementById('timer_ring')
 let timer = document.getElementById('timer')
 let isPaused = false;
+
+// Get circumference of SVG ring
+let radius = timerRing.getAttribute('r')
+let circumference = 2 * (Math.PI * radius)
+document.documentElement.style.setProperty('--circumference', circumference);
 
 // Set property functions
 const setAccentColor = (color) => {
@@ -103,26 +108,20 @@ const startTimer = (event) => {
     let payload = event.target;
     let time = timer.getAttribute('data-current-timer')
     let ringDashOffSet = timerRing.getAttribute('stroke-dashoffset')
-    ringDashOffSet < 1 ? ringDashOffSet = 1004 : ringDashOffSet
+    ringDashOffSet < 1 ? ringDashOffSet = circumference : ringDashOffSet
     let x = ringDashOffSet / time;
 
-    switch (payload.innerHTML.toLowerCase()) {
+    switch (payload.innerHTML.toLowerCase()) { // Switch functionality based on button innerHTML
         case 'pause':
             isPaused = true
             payload.innerHTML = 'RESUME'
-            break;
-        case 'resume':
-            isPaused = false
-            payload.innerHTML = 'PAUSE'
-        case 'start':
-            payload.innerHTML = 'PAUSE'
             break;
         default:
             isPaused = false
             payload.innerHTML = 'PAUSE'
     }
 
-    let countDown = setInterval(() => {
+    let countDown = setInterval(() => { // Probably should take this 1 step above to fix pause bug
         if (time <= 0) {
             clearInterval(countDown)
             payload.innerHTML = 'RESTART'

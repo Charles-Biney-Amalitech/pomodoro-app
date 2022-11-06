@@ -21,6 +21,8 @@ font-family: 'Space Mono', monospace;
 
   --font: "Kumbh Sans";
   font-family: var(--font);
+
+  --circumference: 0;
 }
 
 body {
@@ -104,12 +106,12 @@ input[type="radio"] {
   height: 100vh;
 }
 
-.font input[type="radio"]:checked + label {
+.font input[type="radio"]:checked+label {
   background: var(--dark-blue);
   color: var(--white);
 }
 
-.color input[type="radio"]:checked + label:before {
+.color input[type="radio"]:checked+label:before {
   content: "\f00c";
   font-family: "FontAwesome";
   font-size: 18px;
@@ -136,7 +138,7 @@ input[type="radio"] {
   box-sizing: border-box;
 }
 
-.row > .flex-between > label {
+.row>.flex-between>label {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -146,27 +148,27 @@ input[type="radio"] {
   cursor: pointer;
 }
 
-.row > .flex-between > label[for="sans"] {
+.row>.flex-between>label[for="sans"] {
   font-family: "Kumbh Sans", sans-serif;
 }
 
-.row > .flex-between > label[for="serif"] {
+.row>.flex-between>label[for="serif"] {
   font-family: "Roboto Slab", serif;
 }
 
-.row > .flex-between > label[for="mono"] {
+.row>.flex-between>label[for="mono"] {
   font-family: "Space Mono", monospace;
 }
 
-.row > .flex-between > label[for="color_one"] {
+.row>.flex-between>label[for="color_one"] {
   background: var(--accent-1);
 }
 
-.row > .flex-between > label[for="color_two"] {
+.row>.flex-between>label[for="color_two"] {
   background: var(--accent-2);
 }
 
-.row > .flex-between > label[for="color_three"] {
+.row>.flex-between>label[for="color_three"] {
   background: var(--accent-3);
 }
 
@@ -256,7 +258,7 @@ input[type="radio"] {
   transform: rotate(-90deg);
   transform-origin: center;
   stroke: var(--accent-color);
-  stroke-dasharray: 1000;
+  stroke-dasharray: var(--circumference);
   transition: 1s;
 }
 
@@ -283,12 +285,12 @@ text {
   fill: var(--accent-color);
 }
 
-.settings-btn > button > img {
+.settings-btn>button>img {
   transition: all.6s;
   transform-origin: center;
 }
 
-.settings-btn > button > img:hover {
+.settings-btn>button>img:hover {
   transform: rotate(90deg);
   transition: all.6s;
 }
@@ -382,6 +384,7 @@ text {
   0% {
     stroke-dashoffset: 1000;
   }
+
   100% {
     stroke-dashoffset: 0;
   }
