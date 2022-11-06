@@ -16,9 +16,13 @@ const increment = (id) => { // Increase function for settings number input
     let field = document.getElementById(id)
     field.value = parseInt(field.value) + 1
 }
-const decrement = (id) => { // Increase function for settings number input
+const decrement = (id) => { // Decrease function for settings number input
     let field = document.getElementById(id)
-    field.value = parseInt(field.value) - 1
+    if (field.value <= 1) {
+        field.value = 1
+    } else {
+        field.value = parseInt(field.value) - 1
+    }
 }
 
 // Timer variables
