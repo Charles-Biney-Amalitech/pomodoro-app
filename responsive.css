@@ -1,4 +1,9 @@
 @media only screen and (max-width: 570px) {
+
+  body {
+    height: calc(100% - 80px);
+  }
+
   h2 {
     font-size: 20px;
     line-height: 35px;
@@ -47,7 +52,7 @@
     flex-flow: column;
   }
 
-  .settings .time-selector .row > h3 {
+  .settings .time-selector .row>h3 {
     margin-bottom: 15px;
   }
 
